@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "kakuna": {
+    "calendar-table": {
       "root": "",
       "sourceRoot": "src",
       "projectType": "application",
@@ -13,7 +13,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/kakuna",
+            "outputPath": "dist/calendar-table",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -50,18 +50,18 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "kakuna:build"
+            "browserTarget": "calendar-table:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "kakuna:build:production"
+              "browserTarget": "calendar-table:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "kakuna:build"
+            "browserTarget": "calendar-table:build"
           }
         },
         "test": {
@@ -95,7 +95,7 @@
         }
       }
     },
-    "kakuna-e2e": {
+    "calendar-table-e2e": {
       "root": "e2e/",
       "projectType": "application",
       "architect": {
@@ -103,7 +103,7 @@
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "kakuna:serve"
+            "devServerTarget": "calendar-table:serve"
           }
         },
         "lint": {
@@ -116,7 +116,47 @@
           }
         }
       }
+    },
+    "ngx-calendar-table": {
+      "root": "projects/ngx-calendar-table",
+      "sourceRoot": "projects/ngx-calendar-table/src",
+      "projectType": "library",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-ng-packagr:build",
+          "options": {
+            "tsConfig": "projects/ngx-calendar-table/tsconfig.lib.json",
+            "project": "projects/ngx-calendar-table/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "project": "projects/ngx-calendar-table/ng-package.prod.json"
+            }
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/ngx-calendar-table/src/test.ts",
+            "tsConfig": "projects/ngx-calendar-table/tsconfig.spec.json",
+            "karmaConfig": "projects/ngx-calendar-table/karma.conf.js"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/ngx-calendar-table/tsconfig.lib.json",
+              "projects/ngx-calendar-table/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
     }
   },
-  "defaultProject": "kakuna"
+  "defaultProject": "calendar-table"
 }
