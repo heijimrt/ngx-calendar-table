@@ -1,6 +1,8 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { NgxCalendarTableComponent } from './ngx-calendar-table.component';
+import { DateService } from '../services/date/date.service';
+import { NgxCalendarTableService } from './ngx-calendar-table.service';
 
 describe('NgxCalendarTableComponent', () => {
   let component: NgxCalendarTableComponent;
@@ -8,7 +10,11 @@ describe('NgxCalendarTableComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ NgxCalendarTableComponent ]
+      declarations: [ NgxCalendarTableComponent ],
+      providers: [
+        DateService,
+        NgxCalendarTableService
+      ]
     })
     .compileComponents();
   }));
@@ -22,4 +28,5 @@ describe('NgxCalendarTableComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
 });

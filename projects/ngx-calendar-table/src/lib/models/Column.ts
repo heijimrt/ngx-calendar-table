@@ -1,11 +1,11 @@
 export class Column
 {
-    label;
+    field;
     value;
 
-    constructor(label, value)
+    constructor(field, value)
     {
-        this.label = label;
+        this.field = field;
         this.value = value;
     }
 }

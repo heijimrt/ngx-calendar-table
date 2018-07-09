@@ -8,9 +8,9 @@ export class DateService
 {
     /**
      * Format @param date based on @param format
-     * 
-     * @param date 
-     * @param format 
+     *
+     * @param date
+     * @param format
      */
     public format(date, format)
     {

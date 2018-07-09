@@ -1,20 +1,20 @@
-<div>
+<div class="calendar-table-wrapper">
 
-    <div class="box-control">
-        <button type="button" id="previous-btn" class="table-control" (click)="controls(false)">Previous</button>
-        <button type="button" id="next-btn" class="table-control" (click)="controls(true)">Next</button>
-    </div>
+    <ngx-calendar-table-controls
+        [columns]="columns"
+        (notifierData)="receivedDataColumns($event)">
+    </ngx-calendar-table-controls>
 
     <table class="calendar-table">
         <tr>
             <th *ngFor="let column of columns">
-                {{ column.label }}
+                {{ column.value }}
             </th>
         </tr>
         <tr *ngFor="let row of rows">
             <td *ngFor="let column of columns">
                 <div class="wrapper-td-content">
-                    {{ row[column.value] }}
+                    {{ row[column.field] }}
                 </div>
             </td>
         </tr>
