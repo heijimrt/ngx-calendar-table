@@ -11,4 +11,8 @@ export class AppComponent {
     { '2018-06-21' : 'value', '2018-06-22': 'another-value' },
     { '2018-06-21' : 'value2' },
   ];
+
+  dateFormat = {
+    date : 'DD/MM/YYYY'
+  };
 }

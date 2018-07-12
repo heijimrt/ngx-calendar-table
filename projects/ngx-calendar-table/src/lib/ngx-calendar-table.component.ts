@@ -13,6 +13,7 @@ export class NgxCalendarTableComponent implements OnInit
   public columns: Column[];
   @Input() public rows: any[];
   @Input() public date: Date;
+  @Input() public format: Object = {};
 
   constructor(public dateService: DateService) { }
 
@@ -28,12 +29,20 @@ export class NgxCalendarTableComponent implements OnInit
     return ranges.map(
       (range) => new Column(
         this.dateService.format(range, 'YYYY-MM-DD'),
-        this.dateService.format(range, 'YYYY-MM-DD')
+        this.dateService.format(range, this.formatDateColumn())
       ));
   }
 
   public receivedDataColumns(data)
   {
     this.columns = data;
+  }
+
+  private formatDateColumn()
+  {
+    if (this.format.hasOwnProperty('date')) {
+      return this.format['date'];
+    }
+    return 'YYYY-MM-DD';
   }
 }

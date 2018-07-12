@@ -1,10 +1,11 @@
 # Ngx Calendar Table
 
+created from angular 6.
+
+ngx calendar table is in progress.
+that's a simple version you can see the next features in the roadmap
+
 ### Installation
-
-Requires [Node.js](https://nodejs.org/) to run.
-
-Install the dependencies and devDependencies and start the server.
 
 ```sh
 $ npm i ngx-calendar-table

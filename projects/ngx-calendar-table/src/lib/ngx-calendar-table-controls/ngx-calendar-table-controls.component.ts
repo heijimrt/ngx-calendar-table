@@ -11,6 +11,7 @@ import { Column } from '../models/Column';
 export class NgxCalendarTableControlsComponent
 {
   @Input() columns: Column[];
+  @Input() format: Object = {};
   @Output() notifierData = new EventEmitter();
 
   constructor(private dateService: DateService) { }
@@ -59,7 +60,7 @@ export class NgxCalendarTableControlsComponent
     return ranges.map(
       (range) => new Column(
         this.dateService.format(range, 'YYYY-MM-DD'),
-        this.dateService.format(range, 'YYYY-MM-DD')
+        this.dateService.format(range, this.formatDateColumn())
       ));
   }
 
@@ -77,5 +78,13 @@ export class NgxCalendarTableControlsComponent
   public getLastColumn()
   {
     return this.columns[this.columns.length - 1];
+  }
+
+  private formatDateColumn()
+  {
+    if (this.format.hasOwnProperty('date')) {
+      return this.format['date'];
+    }
+    return 'YYYY-MM-DD';
   }
 }
