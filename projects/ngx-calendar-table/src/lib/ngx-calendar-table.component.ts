@@ -1,11 +1,14 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, ContentChild, TemplateRef } from '@angular/core';
+
 import { DateService } from '../services/date/date.service';
 import { Column } from './models/Column';
+import { NgxCalendarTableService } from './ngx-calendar-table.service';
+import { NgxCalendarTableContentDirective } from './directives/ngx-calendar-table-content.directive';
 
 @Component({
   selector: 'ngx-calendar-table',
   templateUrl: './ngx-calendar-table.component.html',
-  styleUrls: ['./ngx-calendar-table.style.css'],
+  styleUrls: ['./ngx-calendar-table.style.scss'],
   host: { class: 'ngx-calendar-content-table' }
 })
 export class NgxCalendarTableComponent implements OnInit
@@ -14,35 +17,23 @@ export class NgxCalendarTableComponent implements OnInit
   @Input() public rows: any[];
   @Input() public date: Date;
   @Input() public format: Object = {};
+  @ContentChild(NgxCalendarTableContentDirective, { read: TemplateRef })
+    private tableContentDirective;
 
-  constructor(public dateService: DateService) { }
+  constructor(
+    private tableService: NgxCalendarTableService,
+    private dateService: DateService
+  ) { }
 
   ngOnInit()
   {
     this.date = new Date();
     const range = this.dateService.createRange(this.date, 2, 'days');
-    this.columns = this.formatColumnRange(range);
-  }
-
-  public formatColumnRange(ranges)
-  {
-    return ranges.map(
-      (range) => new Column(
-        this.dateService.format(range, 'YYYY-MM-DD'),
-        this.dateService.format(range, this.formatDateColumn())
-      ));
+    this.columns = this.tableService.formatColumnRange(range, this.format);
   }
 
   public receivedDataColumns(data)
   {
     this.columns = data;
-  }
-
-  private formatDateColumn()
-  {
-    if (this.format.hasOwnProperty('date')) {
-      return this.format['date'];
-    }
-    return 'YYYY-MM-DD';
   }
 }

@@ -1,13 +1,15 @@
 table, th, td {
     border: 1px solid black;
     border-collapse: collapse;
+    empty-cells: show; 
 }
 
 .calendar-table {
     empty-cells: show;
     width: 100%;
-}
 
-.wrapper-td-content {
-    min-height: 50px
+    td {
+        min-height: 50px;
+        height: 25px;
+    }
 }

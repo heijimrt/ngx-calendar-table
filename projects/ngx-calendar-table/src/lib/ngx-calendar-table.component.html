@@ -12,13 +12,14 @@
                 {{ column.value }}
             </th>
         </tr>
+
         <tr *ngFor="let row of rows">
-            <td *ngFor="let column of columns">
-                <div class="wrapper-td-content">
-                    {{ row[column.field] }}
-                </div>
-            </td>
+            <ng-container
+                [ngTemplateOutlet]="tableContentDirective"
+                [ngTemplateOutletContext]="{ row: row, columns: columns }">
+            </ng-container>
         </tr>
+
     </table>
 
 </div>

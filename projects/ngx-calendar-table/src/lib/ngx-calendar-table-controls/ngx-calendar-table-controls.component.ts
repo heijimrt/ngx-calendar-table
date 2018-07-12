@@ -1,6 +1,7 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { DateService } from '../../services/date/date.service';
 import { Column } from '../models/Column';
+import { NgxCalendarTableService } from '../ngx-calendar-table.service';
 
 @Component({
   selector: 'ngx-calendar-table-controls',
@@ -14,7 +15,10 @@ export class NgxCalendarTableControlsComponent
   @Input() format: Object = {};
   @Output() notifierData = new EventEmitter();
 
-  constructor(private dateService: DateService) { }
+  constructor(
+    private tableService: NgxCalendarTableService,
+    private dateService: DateService
+  ) { }
 
   /**
    * Decide if control is next or previous based on received value
@@ -23,11 +27,7 @@ export class NgxCalendarTableControlsComponent
    */
   public controls(value: boolean)
   {
-    if (value) {
-      this.next();
-      return;
-    }
-    this.previous();
+    (value) ? this.next() : this.previous();
   }
 
   /**
@@ -37,7 +37,9 @@ export class NgxCalendarTableControlsComponent
   {
     const date = this.dateService.add(this.getLastColumn().field, 2, 'days');
     const ranges = this.dateService.createRange(date.toDate(), 2, 'days');
-    this.notifierData.emit(this.formatColumnRange(ranges));
+    this.notifierData.emit(
+      this.tableService.formatColumnRange(ranges, this.format)
+    );
   }
 
   /**
@@ -47,21 +49,9 @@ export class NgxCalendarTableControlsComponent
   {
     const sub = this.dateService.sub(this.getFirstColumn().field, 2, 'days');
     const subRanges = this.dateService.createRange(sub.toDate(), 2, 'days');
-    this.notifierData.emit(this.formatColumnRange(subRanges));
-  }
-
-  /**
-   * Receive a range of dates to format as column
-   * 
-   * @param ranges 
-   */
-  public formatColumnRange(ranges)
-  {
-    return ranges.map(
-      (range) => new Column(
-        this.dateService.format(range, 'YYYY-MM-DD'),
-        this.dateService.format(range, this.formatDateColumn())
-      ));
+    this.notifierData.emit(
+      this.tableService.formatColumnRange(subRanges, this.format)
+    );
   }
 
   /**
@@ -78,13 +68,5 @@ export class NgxCalendarTableControlsComponent
   public getLastColumn()
   {
     return this.columns[this.columns.length - 1];
-  }
-
-  private formatDateColumn()
-  {
-    if (this.format.hasOwnProperty('date')) {
-      return this.format['date'];
-    }
-    return 'YYYY-MM-DD';
   }
 }
