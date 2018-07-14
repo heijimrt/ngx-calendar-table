@@ -4,6 +4,7 @@ import { DateService } from '../services/date/date.service';
 import { Column } from './models/Column';
 import { NgxCalendarTableService } from './ngx-calendar-table.service';
 import { NgxCalendarTableContentDirective } from './directives/ngx-calendar-table-content.directive';
+import { Config } from './models/Config';
 
 @Component({
   selector: 'ngx-calendar-table',
@@ -16,9 +17,9 @@ export class NgxCalendarTableComponent implements OnInit
   public columns: Column[];
   @Input() public rows: any[];
   @Input() public date: Date;
-  @Input() public format: Object = {};
+  @Input() public config: Config;
   @ContentChild(NgxCalendarTableContentDirective, { read: TemplateRef })
-    private tableContentDirective;
+    public tableContentDirective;
 
   constructor(
     private tableService: NgxCalendarTableService,
@@ -27,9 +28,15 @@ export class NgxCalendarTableComponent implements OnInit
 
   ngOnInit()
   {
-    this.date = new Date();
-    const range = this.dateService.createRange(this.date, 2, 'days');
-    this.columns = this.tableService.formatColumnRange(range, this.format);
+    const range = this.dateService.createRange(
+      this.date,
+      this.config.columnsNumber,
+      'days'
+    );
+    this.columns = this.tableService.formatColumnRange(
+      range,
+      this.config.format
+    );
   }
 
   public receivedDataColumns(data)

@@ -7,6 +7,7 @@ table, th, td {
 .calendar-table {
     empty-cells: show;
     width: 100%;
+    table-layout: fixed;
 
     td {
         min-height: 50px;

@@ -2,6 +2,7 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { DateService } from '../../services/date/date.service';
 import { Column } from '../models/Column';
 import { NgxCalendarTableService } from '../ngx-calendar-table.service';
+import { Config } from '../models/Config';
 
 @Component({
   selector: 'ngx-calendar-table-controls',
@@ -12,7 +13,7 @@ import { NgxCalendarTableService } from '../ngx-calendar-table.service';
 export class NgxCalendarTableControlsComponent
 {
   @Input() columns: Column[];
-  @Input() format: Object = {};
+  @Input() config: Config;
   @Output() notifierData = new EventEmitter();
 
   constructor(
@@ -35,10 +36,10 @@ export class NgxCalendarTableControlsComponent
    */
   private next()
   {
-    const date = this.dateService.add(this.getLastColumn().field, 2, 'days');
-    const ranges = this.dateService.createRange(date.toDate(), 2, 'days');
+    const date = this.dateService.add(this.getLastColumn().field, this.config.columnsNumber, 'days');
+    const ranges = this.dateService.createRange(date.toDate(), this.config.columnsNumber, 'days');
     this.notifierData.emit(
-      this.tableService.formatColumnRange(ranges, this.format)
+      this.tableService.formatColumnRange(ranges, this.config.format)
     );
   }
 
@@ -47,10 +48,10 @@ export class NgxCalendarTableControlsComponent
    */
   private previous()
   {
-    const sub = this.dateService.sub(this.getFirstColumn().field, 2, 'days');
-    const subRanges = this.dateService.createRange(sub.toDate(), 2, 'days');
+    const sub = this.dateService.sub(this.getFirstColumn().field, this.config.columnsNumber, 'days');
+    const subRanges = this.dateService.createRange(sub.toDate(), this.config.columnsNumber, 'days');
     this.notifierData.emit(
-      this.tableService.formatColumnRange(subRanges, this.format)
+      this.tableService.formatColumnRange(subRanges, this.config.format)
     );
   }
 

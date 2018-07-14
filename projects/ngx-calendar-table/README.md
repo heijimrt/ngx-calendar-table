@@ -19,7 +19,7 @@ https://stackblitz.com/edit/ngx-calendar-table-example
 ### Roadmap
 
   - Make tests in depth
-  - Implement table features like sort, filter..
+  - Implement table features like sort, filter, paginator..
   - Implement weekly, monthly and yearly
 
 
