@@ -28,17 +28,41 @@ export class NgxCalendarTableComponent implements OnInit
 
   ngOnInit()
   {
-    const range = this.dateService.createRange(
+    this.rowIdentificator();
+    this.populateColumns();
+  }
+
+  rowIdentificator()
+  {
+    this.rows = this.rows.map(row => {
+      Object.keys(row).map(key => {
+        row[this.dateService.format(
+          key,
+          this.tableService.formatDateColumn(
+            this.config.frequency,
+            this.config.format
+          ))] = row[key];
+      });
+      return row;
+    });
+  }
+
+  /**
+   * Build and populate columns
+   */
+  private populateColumns()
+  {
+    this.columns = this.tableService.buildColumns(
       this.date,
       this.config.columnsNumber,
-      'days'
-    );
-    this.columns = this.tableService.formatColumnRange(
-      range,
+      this.config.frequency,
       this.config.format
     );
   }
 
+  /**
+   * Receive data columns by event emitter
+   */
   public receivedDataColumns(data)
   {
     this.columns = data;

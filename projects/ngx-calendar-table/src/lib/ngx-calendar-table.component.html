@@ -1,11 +1,5 @@
 <div class="calendar-table-wrapper">
 
-    <ngx-calendar-table-controls
-        [columns]="columns"
-        [config]="config"
-        (notifierData)="receivedDataColumns($event)">
-    </ngx-calendar-table-controls>
-
     <table class="calendar-table">
         <tr>
             <th *ngFor="let column of columns">
@@ -21,5 +15,11 @@
         </tr>
 
     </table>
+
+    <ngx-calendar-table-controls
+        [columns]="columns"
+        [config]="config"
+        (notifierData)="receivedDataColumns($event)">
+    </ngx-calendar-table-controls>
 
 </div>

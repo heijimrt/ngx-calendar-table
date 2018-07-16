@@ -16,11 +16,22 @@ $ npm i ngx-calendar-table
 
 https://stackblitz.com/edit/ngx-calendar-table-example
 
+
+### Documentation
+
+  @Iputs - [ngx-calendar-table] component
+ | param | Description |
+| --- | --- |
+| date | optional - [Date] - ex: new Date(2018, 4, 14) |
+| rows | required - [ { stringDate : value } ] - ex:    example: [{ '2018-11-20' :'First value' } ]| 
+| config | [Config] |
+
 ### Roadmap
 
   - Make tests in depth
-  - Implement table features like sort, filter, paginator..
-  - Implement weekly, monthly and yearly
+  - Implement table features like sort, filter..
+  - Implement weekly
+  - Improve documentation
 
 
 License

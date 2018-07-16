@@ -8,7 +8,7 @@
         let-columns="columns">
         <td *ngFor="let column of columns">
             <div class="wrapper-td-content">
-                <a href="">{{ row[column.field] }}</a>
+                {{ row[column.field] }}
             </div>
         </td>
     </ng-template>

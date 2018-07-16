@@ -9,7 +9,7 @@ import { NgxCalendarTableContentDirective } from './directives/ngx-calendar-tabl
 
 @NgModule({
   imports: [
-    CommonModule
+    CommonModule,
   ],
   declarations: [
     NgxCalendarTableComponent,

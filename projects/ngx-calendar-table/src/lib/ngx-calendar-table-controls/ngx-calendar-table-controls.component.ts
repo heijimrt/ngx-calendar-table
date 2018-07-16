@@ -23,8 +23,8 @@ export class NgxCalendarTableControlsComponent
 
   /**
    * Decide if control is next or previous based on received value
-   * 
-   * @param value 
+   *
+   * @param value
    */
   public controls(value: boolean)
   {
@@ -34,25 +34,43 @@ export class NgxCalendarTableControlsComponent
   /**
    * Add date based last current column and create a new range
    */
-  private next()
+  private next(): void
   {
-    const date = this.dateService.add(this.getLastColumn().field, this.config.columnsNumber, 'days');
-    const ranges = this.dateService.createRange(date.toDate(), this.config.columnsNumber, 'days');
-    this.notifierData.emit(
-      this.tableService.formatColumnRange(ranges, this.config.format)
+    const added = this.dateService.add(
+      this.getLastColumn().field,
+      this.config.columnsNumber,
+      this.config.frequency
     );
+    this.buildColumnsToEmit(added);
   }
 
   /**
    * Subtract date based first current column and create a new range
    */
-  private previous()
+  private previous(): void
   {
-    const sub = this.dateService.sub(this.getFirstColumn().field, this.config.columnsNumber, 'days');
-    const subRanges = this.dateService.createRange(sub.toDate(), this.config.columnsNumber, 'days');
-    this.notifierData.emit(
-      this.tableService.formatColumnRange(subRanges, this.config.format)
+    const sub = this.dateService.sub(
+      this.getFirstColumn().field,
+      this.config.columnsNumber,
+      this.config.frequency
     );
+    this.buildColumnsToEmit(sub);
+  }
+
+  /**
+   * Create new range of columns to emit
+   *
+   * @param operation
+   */
+  private buildColumnsToEmit(operation): void
+  {
+    const columns = this.tableService.buildColumns(
+      operation.toDate(),
+      this.config.columnsNumber,
+      this.config.frequency,
+      this.config.format
+    );
+    this.notifierData.emit(columns);
   }
 
   /**

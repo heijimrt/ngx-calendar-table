@@ -9,8 +9,6 @@ import { Config } from '../../projects/ngx-calendar-table/src/lib/models/Config'
 })
 export class AppComponent {
 
-  date = new Date(2018, 11, 24);
-
   data = [
     { '2018-06-21' : 'value', '2018-06-22': 'another-value' },
     { '2018-06-24' : 'value2' },
@@ -22,13 +20,11 @@ export class AppComponent {
     { '2018-06-29' : 'value2' },
     { '2018-06-30' : 'value2' },
     { '2018-07-01' : 'value2' },
-    { '2018-07-02' : 'value2' },
+    { '2019-07-02' : 'value2' },
   ];
 
   config: Config = {
-    format : {
-      date : 'DD/MM/YYYY'
-    },
+    frequency: 'month',
     columnsNumber: 5
   };
 }

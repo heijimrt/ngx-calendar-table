@@ -1,5 +1,6 @@
 export class Config
 {
-    format: Object;
-    columnsNumber: number;
+    frequency?: string;
+    columnsNumber?: number;
+    format?: Object;
 }
