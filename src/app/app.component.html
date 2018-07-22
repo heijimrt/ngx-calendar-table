@@ -1,6 +1,7 @@
 <ngx-calendar-table
     [date]="date"
     [rows]="data"
+    [controls]="labelControl"
     [config]="config">
 
     <ng-template calendarTableContent
@@ -8,7 +9,7 @@
         let-columns="columns">
         <td *ngFor="let column of columns">
             <div class="wrapper-td-content">
-                {{ row[column.field] }}
+                {{ row[column.identificator]?.value }}
             </div>
         </td>
     </ng-template>

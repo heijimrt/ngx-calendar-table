@@ -14,6 +14,7 @@ export class NgxCalendarTableControlsComponent
 {
   @Input() columns: Column[];
   @Input() config: Config;
+  @Input() labels;
   @Output() notifierData = new EventEmitter();
 
   constructor(
@@ -24,7 +25,7 @@ export class NgxCalendarTableControlsComponent
   /**
    * Decide if control is next or previous based on received value
    *
-   * @param value
+   * @param value {boolean}
    */
   public controls(value: boolean)
   {
@@ -62,7 +63,7 @@ export class NgxCalendarTableControlsComponent
    *
    * @param operation
    */
-  private buildColumnsToEmit(operation): void
+  private buildColumnsToEmit(operation)
   {
     const columns = this.tableService.buildColumns(
       operation.toDate(),
@@ -76,7 +77,7 @@ export class NgxCalendarTableControlsComponent
   /**
    * Get first column of columns
    */
-  public getFirstColumn()
+  public getFirstColumn(): Column
   {
     return this.columns[0];
   }
@@ -84,7 +85,7 @@ export class NgxCalendarTableControlsComponent
   /**
    * Get last column of columns
    */
-  public getLastColumn()
+  public getLastColumn(): Column
   {
     return this.columns[this.columns.length - 1];
   }

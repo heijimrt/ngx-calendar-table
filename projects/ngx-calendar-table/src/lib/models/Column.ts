@@ -2,13 +2,18 @@ export class Column
 {
     identificator;
     field;
-    value;
+    header;
+    frequency;
 
     constructor(
+        identificator,
         field,
-        value
+        header,
+        frenquency?
     ) {
+        this.identificator = identificator;
         this.field = field;
-        this.value = value;
+        this.header = header;
+        this.frequency = frenquency;
     }
 }

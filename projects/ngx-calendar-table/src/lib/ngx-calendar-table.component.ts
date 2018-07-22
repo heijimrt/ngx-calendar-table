@@ -5,6 +5,7 @@ import { Column } from './models/Column';
 import { NgxCalendarTableService } from './ngx-calendar-table.service';
 import { NgxCalendarTableContentDirective } from './directives/ngx-calendar-table-content.directive';
 import { Config } from './models/Config';
+import * as _ from 'lodash';
 
 @Component({
   selector: 'ngx-calendar-table',
@@ -16,10 +17,13 @@ export class NgxCalendarTableComponent implements OnInit
 {
   public columns: Column[];
   @Input() public rows: any[];
-  @Input() public date: Date;
+  @Input() public date: Date = new Date();
   @Input() public config: Config;
-  @ContentChild(NgxCalendarTableContentDirective, { read: TemplateRef })
-    public tableContentDirective;
+  @Input() public controls: Object = { previous: 'previous', next: 'next' };
+  @ContentChild(
+    NgxCalendarTableContentDirective,
+    { read: TemplateRef }
+  ) public tableContentDirective;
 
   constructor(
     private tableService: NgxCalendarTableService,
@@ -28,29 +32,17 @@ export class NgxCalendarTableComponent implements OnInit
 
   ngOnInit()
   {
-    this.rowIdentificator();
+    this.tableService.manipulateRows(
+      this.rows,
+      this.config.frequency
+    );
     this.populateColumns();
-  }
-
-  rowIdentificator()
-  {
-    this.rows = this.rows.map(row => {
-      Object.keys(row).map(key => {
-        row[this.dateService.format(
-          key,
-          this.tableService.formatDateColumn(
-            this.config.frequency,
-            this.config.format
-          ))] = row[key];
-      });
-      return row;
-    });
   }
 
   /**
    * Build and populate columns
    */
-  private populateColumns()
+  private populateColumns(): void
   {
     this.columns = this.tableService.buildColumns(
       this.date,
@@ -63,7 +55,7 @@ export class NgxCalendarTableComponent implements OnInit
   /**
    * Receive data columns by event emitter
    */
-  public receivedDataColumns(data)
+  public receivedDataColumns(data): void
   {
     this.columns = data;
   }

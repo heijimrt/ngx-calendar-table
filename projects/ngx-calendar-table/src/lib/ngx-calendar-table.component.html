@@ -3,7 +3,7 @@
     <table class="calendar-table">
         <tr>
             <th *ngFor="let column of columns">
-                {{ column.value }}
+                {{ column.header }}
             </th>
         </tr>
 
@@ -18,6 +18,7 @@
 
     <ngx-calendar-table-controls
         [columns]="columns"
+        [labels]="controls"
         [config]="config"
         (notifierData)="receivedDataColumns($event)">
     </ngx-calendar-table-controls>

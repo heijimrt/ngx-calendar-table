@@ -10,21 +10,28 @@ import { Config } from '../../projects/ngx-calendar-table/src/lib/models/Config'
 export class AppComponent {
 
   data = [
-    { '2018-06-21' : 'value', '2018-06-22': 'another-value' },
-    { '2018-06-24' : 'value2' },
-    { '2018-06-23' : 'value2' },
-    { '2018-06-25' : 'value2' },
-    { '2018-06-26' : 'value2' },
-    { '2018-06-27' : 'value2' },
-    { '2018-06-28' : 'value2' },
-    { '2018-06-29' : 'value2' },
-    { '2018-06-30' : 'value2' },
-    { '2018-07-01' : 'value2' },
-    { '2019-07-02' : 'value2' },
+    {
+      '2018-06-21' : 'value1',
+      '2018-06-22' : 'value2',
+    },
+    {
+      '2018-06-24' : 'value3',
+      '2018-06-25' : 'value5'
+    },
+    {
+      '2018-06-23' : 'value4',
+      '2018-06-26' : 'value7'
+    },
   ];
 
   config: Config = {
-    frequency: 'month',
-    columnsNumber: 5
+    frequency: 'days',
+    format: 'DD/MM/YYYY',
+    columnsNumber: 3
+  };
+
+  labelControl = {
+    previous : 'Back',
+    next     : 'Next!'
   };
 }

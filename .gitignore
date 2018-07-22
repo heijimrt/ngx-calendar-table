@@ -8,6 +8,13 @@
 # dependencies
 /node_modules
 
+# projects
+/projects/ngx-calendar-table/node_modules
+/projects/ngx-calendar-table/documentation
+/projects/ngx-calendar-table/package-lock.json
+
+package-lock.json
+
 # IDEs and editors
 /.idea
 .project
