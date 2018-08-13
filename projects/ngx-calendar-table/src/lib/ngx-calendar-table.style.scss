@@ -4,10 +4,14 @@ table, th, td {
     empty-cells: show; 
 }
 
+.table-container {
+    overflow: auto;
+}
+
 .calendar-table {
     empty-cells: show;
     width: 100%;
-    table-layout: fixed;
+    table-layout: auto;
 
     td {
         min-height: 50px;

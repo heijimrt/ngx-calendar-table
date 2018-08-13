@@ -1,9 +1,9 @@
 # Ngx Calendar Table
 
-created from angular 6.
-
 ngx calendar table is in progress.
 that's a simple version you can see the next features in the roadmap
+
+created from angular 6.
 
 ### Installation
 

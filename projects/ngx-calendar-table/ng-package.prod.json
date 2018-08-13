@@ -3,5 +3,8 @@
   "dest": "../../dist/ngx-calendar-table",
   "lib": {
     "entryFile": "src/public_api.ts"
-  }
+  },
+  "whitelistedNonPeerDependencies": [
+    "moment"
+  ]
 }

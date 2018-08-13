@@ -59,4 +59,22 @@ export class NgxCalendarTableComponent implements OnInit
   {
     this.columns = data;
   }
+
+  private receiveFrequency(event)
+  {
+
+    // working on this implementation
+
+    // this.config = {
+    //   frequency : event.target.value,
+    //   columnsNumber: 2,
+    //   format: 'DD/MM/YYYY'
+    // };
+
+    // this.tableService.manipulateRows(
+    //   this.rows,
+    //   this.config.frequency
+    // );
+    // this.populateColumns();
+  }
 }

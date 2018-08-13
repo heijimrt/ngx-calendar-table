@@ -1,20 +1,21 @@
 <div class="calendar-table-wrapper">
+    
+    <div class="table-container">
+        <table class="calendar-table">
+            <tr>
+                <th *ngFor="let column of columns">
+                    <span>{{ column.header }}</span>
+                </th>
+            </tr>
 
-    <table class="calendar-table">
-        <tr>
-            <th *ngFor="let column of columns">
-                {{ column.header }}
-            </th>
-        </tr>
-
-        <tr *ngFor="let row of rows">
-            <ng-container
-                [ngTemplateOutlet]="tableContentDirective"
-                [ngTemplateOutletContext]="{ row: row, columns: columns }">
-            </ng-container>
-        </tr>
-
-    </table>
+            <tr *ngFor="let row of rows">
+                <ng-container
+                    [ngTemplateOutlet]="tableContentDirective"
+                    [ngTemplateOutletContext]="{ row: row, columns: columns }">
+                </ng-container>
+            </tr>
+        </table>
+    </div>
 
     <ngx-calendar-table-controls
         [columns]="columns"

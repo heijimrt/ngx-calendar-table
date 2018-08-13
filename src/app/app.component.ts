@@ -12,11 +12,12 @@ export class AppComponent {
   data = [
     {
       '2018-06-21' : 'value1',
-      '2018-06-22' : 'value2',
+      '2018-07-22' : 'value2',
+      '2018-07-23' : 'value25',
     },
     {
-      '2018-06-24' : 'value3',
-      '2018-06-25' : 'value5'
+      '2018-07-24' : 'value3',
+      '2018-07-25' : 'value5'
     },
     {
       '2018-06-23' : 'value4',
@@ -25,8 +26,8 @@ export class AppComponent {
   ];
 
   config: Config = {
-    frequency: 'days',
-    format: 'DD/MM/YYYY',
+    frequency: 'month',
+    format: 'MM/YYYY',
     columnsNumber: 3
   };
 

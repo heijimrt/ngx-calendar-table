@@ -137,9 +137,12 @@ export class NgxCalendarTableService
     rows: any[],
     frequency: string
   ) {
-    return rows.map((row) => Object.keys(row).map(
-      (key) => this.generateRowIdentificator(row, key, frequency))
-    );
+    return rows.map((row) => {
+      Object.keys(row).map(
+        (key) => {
+          this.generateRowIdentificator(row, key, frequency);
+        });
+    });
   }
 
   /**
