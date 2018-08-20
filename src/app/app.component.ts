@@ -23,11 +23,16 @@ export class AppComponent {
       '2018-06-23' : 'value4',
       '2018-06-26' : 'value7'
     },
+    {
+      '2019-02-23' : 'value4',
+      '2019-01-26' : 'value7',
+      '2019-01-27' : 'value8'
+    },
   ];
 
   config: Config = {
-    frequency: 'month',
-    format: 'MM/YYYY',
+    frequency: 'days',
+    format: 'DD/MM/YYYY',
     columnsNumber: 3
   };
 

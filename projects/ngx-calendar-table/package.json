@@ -1,6 +1,6 @@
 {
   "name": "ngx-calendar-table",
-  "version": "0.1.3",
+  "version": "0.1.4",
   "scripts": {
     "compodoc": "./node_modules/.bin/compodoc -p ./tsconfig.lib.json"
   },

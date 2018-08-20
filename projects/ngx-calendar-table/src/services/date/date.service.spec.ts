@@ -13,8 +13,15 @@ describe('DateService', () => {
     expect(service).toBeTruthy();
   }));
 
-  it('should format received literal date', inject([DateService], (service: DateService) => {
-    const format = service.format('2018/07/09', 'YYYY-MM-DD');
-    expect(format).toBe('2018-07-09');
+  it('should add two days and return formatted date', inject([DateService], (service: DateService) => {
+    const add = service.add(new Date('2015-03-25'), 2, 'days');
+    const formatted = service.format(add, 'YYYY-MM-DD');
+    expect(formatted).toBe('2015-03-27');
+  }));
+
+  it('should subtract two days and return formatted date', inject([DateService], (service: DateService) => {
+    const sub = service.sub(new Date('2015-03-25'), 2, 'days');
+    const formatted = service.format(sub, 'YYYY-MM-DD');
+    expect(formatted).toBe('2015-03-23');
   }));
 });
