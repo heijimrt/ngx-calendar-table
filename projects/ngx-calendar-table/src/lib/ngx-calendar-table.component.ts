@@ -36,7 +36,6 @@ export class NgxCalendarTableComponent implements OnInit
       this.rows,
       this.config.frequency
     );
-    console.log(this.rows);
     this.populateColumns();
   }
 
@@ -51,7 +50,6 @@ export class NgxCalendarTableComponent implements OnInit
       this.config.frequency,
       this.config.format
     );
-    console.log(this.columns);
   }
 
   /**

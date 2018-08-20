@@ -1,6 +1,6 @@
 {
   "name": "ngx-calendar-table",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "scripts": {
     "compodoc": "./node_modules/.bin/compodoc -p ./tsconfig.lib.json"
   },
@@ -17,6 +17,6 @@
   "license": "Apache-2.0",
   "homepage": "https://github.com/heijimrt/ngx-calendar-table",
   "keywords": [
-    "angular", "calendar", "calendar table", "table"
+    "angular", "calendar", "calendar table", "table", "date", "ng"
   ]
 }
