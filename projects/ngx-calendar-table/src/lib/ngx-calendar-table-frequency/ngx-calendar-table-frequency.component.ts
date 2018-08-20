@@ -9,7 +9,7 @@ export class NgxCalendarTableFrequencyComponent
 {
     @Output() public dataNotifier: EventEmitter<any> = new EventEmitter();
 
-    private onChange(event)
+    public onChange(event)
     {
         this.dataNotifier.emit(event);
     }
