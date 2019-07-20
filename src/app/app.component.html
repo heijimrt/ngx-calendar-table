@@ -1,17 +1,18 @@
-<ngx-calendar-table
-    [date]="date"
-    [rows]="data"
-    [controls]="labelControl"
-    [config]="config">
-
+<ngx-calendar-table [rows]="data">
     <ng-template calendarTableContent
         let-row="row"
         let-columns="columns">
         <td *ngFor="let column of columns">
             <div class="wrapper-td-content">
-                {{ row[column.identificator]?.value }}
+                <pre>
+                    {{ row | json }}
+                </pre>
             </div>
         </td>
     </ng-template>
-
 </ngx-calendar-table>
+
+<div>
+    <button (click)="previous()">previous</button>
+    <button (click)="next()">next</button>
+</div>

@@ -1,5 +1,5 @@
 import { Component, ViewEncapsulation } from '@angular/core';
-import { Config } from '../../projects/ngx-calendar-table/src/lib/models/Config';
+import { CalendarConfig } from '../../projects/ngx-calendar-table/src/lib/models/calendar-config';
 
 @Component({
   selector: 'app-root',
@@ -30,14 +30,16 @@ export class AppComponent {
     },
   ];
 
-  config: Config = {
-    frequency: 'days',
-    format: 'DD/MM/YYYY',
+  config: CalendarConfig = {
+    frequency: 'Daily',
     columnsNumber: 3
   };
 
-  labelControl = {
-    previous : 'Back',
-    next     : 'Next!'
-  };
+  previous() {
+
+  }
+
+  next() {
+
+  }
 }

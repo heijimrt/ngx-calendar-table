@@ -1,80 +1,38 @@
-import { Component, OnInit, Input, ContentChild, TemplateRef } from '@angular/core';
+import {
+  Component,
+  Input,
+  ContentChild,
+  TemplateRef,
+  HostBinding,
+  ChangeDetectionStrategy
+} from '@angular/core';
 
-import { DateService } from '../services/date/date.service';
-import { Column } from './models/Column';
-import { NgxCalendarTableService } from './ngx-calendar-table.service';
+import { Column } from './models/column';
 import { NgxCalendarTableContentDirective } from './directives/ngx-calendar-table-content.directive';
-import { Config } from './models/Config';
-import * as _ from 'lodash';
+import { NgxCalendarTableService } from './services/table/ngx-calendar-table.service';
+import { Frequency } from './enums/frequency.enum';
 
 @Component({
   selector: 'ngx-calendar-table',
   templateUrl: './ngx-calendar-table.component.html',
   styleUrls: ['./ngx-calendar-table.style.scss'],
-  host: { class: 'ngx-calendar-content-table' }
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class NgxCalendarTableComponent implements OnInit
+export class NgxCalendarTableComponent
 {
-  public columns: Column[];
-  @Input() public rows: any[];
-  @Input() public date: Date = new Date();
-  @Input() public config: Config;
-  @Input() public controls: Object = { previous: 'previous', next: 'next' };
+  public columns: Column[] = [];
+  @Input()
+  public rows: any[] = [];
+  @HostBinding('class')
+  public classes: string = 'ngx-calendar-content-table';
   @ContentChild(
     NgxCalendarTableContentDirective,
     { read: TemplateRef }
-  ) public tableContentDirective;
+  ) public tableContentDirective: any;
 
-  constructor(
-    private tableService: NgxCalendarTableService,
-    private dateService: DateService
-  ) { }
+  constructor(private readonly calendarService: NgxCalendarTableService) {}
 
-  ngOnInit()
-  {
-    this.tableService.manipulateRows(
-      this.rows,
-      this.config.frequency
-    );
-    this.populateColumns();
-  }
-
-  /**
-   * Build and populate columns
-   */
-  private populateColumns(): void
-  {
-    this.columns = this.tableService.buildColumns(
-      this.date,
-      this.config.columnsNumber,
-      this.config.frequency,
-      this.config.format
-    );
-  }
-
-  /**
-   * Receive data columns by event emitter
-   */
-  public receivedDataColumns(data): void
-  {
-    this.columns = data;
-  }
-
-  private receiveFrequency(event)
-  {
-
-    // working on this implementation
-
-    // this.config = {
-    //   frequency : event.target.value,
-    //   columnsNumber: 2,
-    //   format: 'DD/MM/YYYY'
-    // };
-
-    // this.tableService.manipulateRows(
-    //   this.rows,
-    //   this.config.frequency
-    // );
-    // this.populateColumns();
+  ngOnInit() {
+    this.columns = this.calendarService.buildColumns(new Date(), 2, Frequency.MONTHLY);
   }
 }

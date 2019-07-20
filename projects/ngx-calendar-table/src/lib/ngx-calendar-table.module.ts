@@ -2,20 +2,16 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { NgxCalendarTableComponent } from './ngx-calendar-table.component';
-import { DateService } from '../services/date/date.service';
-import { NgxCalendarTableService } from './ngx-calendar-table.service';
-import { NgxCalendarTableControlsComponent } from './ngx-calendar-table-controls/ngx-calendar-table-controls.component';
+import { DateService } from './services/date/date.service';
+import { NgxCalendarTableService } from './services/table/ngx-calendar-table.service';
 import { NgxCalendarTableContentDirective } from './directives/ngx-calendar-table-content.directive';
-import { NgxCalendarTableFrequencyModule } from './ngx-calendar-table-frequency/ngx-calendar-table-frequency.module';
 
 @NgModule({
   imports: [
-    CommonModule,
-    NgxCalendarTableFrequencyModule
+    CommonModule
   ],
   declarations: [
     NgxCalendarTableComponent,
-    NgxCalendarTableControlsComponent,
     NgxCalendarTableContentDirective
   ],
   providers: [
